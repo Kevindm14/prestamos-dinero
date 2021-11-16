@@ -35,6 +35,7 @@ $routes->get('/', 'Home::index');
 $routes->get('/new', 'Home::new');
 $routes->post('/create', 'Home::create');
 $routes->get('/edit/(:num)', 'Home::edit/$1');
+$routes->get('/delete/(:num)', 'Home::delete/$1');
 $routes->post('/updateAll', 'Home::updateAll');
 
 /*

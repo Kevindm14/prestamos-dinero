@@ -24,6 +24,7 @@ Clientes
     </thead>
     <tbody>
       <?php foreach ($data as $key) : ?>
+
         <tr>
           <td><?= $key["id"] ?></td>
           <td>
@@ -34,32 +35,32 @@ Clientes
           <td><?= $key["created_at"] ?></td>
           <td>
             <a href="<?= base_url() . '/edit/' . $key['id'] ?>" class="btn btn-sm btn-warning"><i class="fas fa-pen"></i></a>
-            <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+            <button class="btn btn-sm btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal-<?= $key['id'] ?>"><i class="fas fa-trash"></i></button>
           </td>
         </tr>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal-<?= $key['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Borrar cliente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                ¿Estas seguro de borrar el cliente?
+              </div>
+              <div class="modal-footer">
+                <a href="<?= base_url() . '/delete/' . $key['id'] ?>" class="btn btn-danger">Borrar</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       <?php endforeach; ?>
     </tbody>
   </table>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Borrar cliente</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ¿Estas seguro de borrar el cliente?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger">Borrar</button>
-      </div>
-    </div>
-  </div>
 </div>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -78,7 +79,7 @@ Clientes
       swal({
         title: "Oh no!",
         text: "Error al agregar",
-        icon: "danger",
+        icon: "error",
       });
       break;
     case 'updated':
@@ -92,7 +93,21 @@ Clientes
       swal({
         title: "Oh no!",
         text: "Error al actualizar",
-        icon: "danger",
+        icon: "error",
+      });
+      break;
+    case 'deleted':
+      swal({
+        title: "Good job!",
+        text: "Cliente borrado correctamente",
+        icon: "success",
+      });
+      break;
+    case 'error_deleted':
+      swal({
+        title: "Oh no!",
+        text: "Error al borrar",
+        icon: "error",
       });
       break;
 

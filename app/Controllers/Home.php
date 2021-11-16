@@ -22,17 +22,23 @@ class Home extends BaseController
 
     public function new()
     {
-        return view('clients/new');
+        $message = session('message');
+        $data = [
+            "message" => $message
+        ];
+
+        return view('clients/new', $data);
     }
 
     public function create() {
         $client = new Client();
         $client_bind = $this->request->getPost();
+        $createClient = $client->insert($client_bind);
 
-        if ($client->insert($client_bind)) {
+        if ($createClient) {
             return redirect()->to(base_url().'/')->with('message', 'created');
         } else {
-            return redirect()->to(base_url().'/')->with('message', 'error_created');
+            return redirect()->to(base_url().'/new')->with('message', 'error_created');
         }
     }
 
@@ -51,6 +57,16 @@ class Home extends BaseController
             return redirect()->to(base_url().'/')->with('message', 'updated');
         } else {
             return redirect()->to(base_url().'/')->with('message', 'error_updated');
+        }
+    }
+
+    public function delete($id = null) {
+        $client = new Client();
+
+        if ($client->where('id', $id)->delete($id)) {
+            return redirect()->to(base_url().'/')->with('message', 'deleted');
+        } else {
+            return redirect()->to(base_url().'/')->with('message', 'error_deleted');
         }
     }
 }

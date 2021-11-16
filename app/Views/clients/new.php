@@ -32,4 +32,21 @@ Nuevo cliente
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 </div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript">
+  let msg = '<?php echo $message ?>';
+
+  switch (msg) {
+    case 'error_created':
+      swal({
+        title: "Oh no!",
+        text: "Error al agregar",
+        icon: "error",
+      });
+      break;
+    default:
+      break;
+  }
+</script>
 <?= $this->endSection() ?>
