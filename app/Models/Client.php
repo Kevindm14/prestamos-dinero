@@ -20,11 +20,4 @@ class Client extends Model
         'phone',
         'email'
     ];
-
-    protected $validationRules    = [
-        'first_name'     => 'required|alpha_numeric_space|min_length[3]',
-        'last_name'     => 'required|alpha_numeric_space|min_length[3]',
-        'phone'     => 'required|alpha_numeric_space|min_length[10]',
-        'email'        => 'required|valid_email|is_unique[users.email]'
-    ];
 }

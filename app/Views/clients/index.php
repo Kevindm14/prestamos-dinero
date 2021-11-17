@@ -28,7 +28,7 @@ Clientes
         <tr>
           <td><?= $key["id"] ?></td>
           <td>
-            <a href="#"><?= $key["first_name"] ?></a>
+            <a href="<?= base_url().'/client/'.$key['id'] ?>"><?= $key["first_name"] ?></a>
           </td>
           <td><?= $key["last_name"]  ?></td>
           <td><?= $key["phone"] ?></td>

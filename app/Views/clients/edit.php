@@ -13,7 +13,9 @@ Editar cliente
     $email = $client['email'];
 ?>
 <div class="container my-5">
-    <form action="<?= base_url() . '/updateAll' ?>" method="POST" class="border rounded p-5">
+    <a href="<?= base_url() ?>" class="btn btn-sm btn-outline-primary">Volver</a>
+
+    <form action="<?= base_url() . '/updateAll' ?>" method="POST" class="border rounded p-5 mt-3">
         <h1 class="text-center h4">Editar Cliente</h1>
 
         <input type="hidden" name="id" value="<?= $id ?>">
