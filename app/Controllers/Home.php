@@ -9,7 +9,7 @@ class Home extends BaseController
     public function index()
     {
         $tasks = new Client();
-        $lists = $tasks->findAll();
+        $lists = $tasks->where('off', 0)->findAll();
         
         $message = session('message');
         $data = [
@@ -79,8 +79,8 @@ class Home extends BaseController
 
     public function delete($id = null) {
         $client = new Client();
-
-        if ($client->where('id', $id)->delete($id)) {
+        $client->find($id);
+        if ($client->delete()) {
             return redirect()->to(base_url().'/')->with('message', 'deleted');
         } else {
             return redirect()->to(base_url().'/')->with('message', 'error_deleted');
@@ -96,5 +96,19 @@ class Home extends BaseController
         }
 
         return view("clients/show", $data);
+    }
+
+    public function histyClient($id = null)
+    {
+        $tasks = new Client();
+        $lists = $tasks->where("off", 1)->findAll();
+        
+        $message = session('message');
+        $data = [
+            "data" => $lists,
+            "message" => $message
+        ];
+
+        return view('clients/index', $data);
     }
 }

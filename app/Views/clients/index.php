@@ -6,13 +6,13 @@ Clientes
 
 <?= $this->section('content') ?>
 <div class="container d-flex justify-content-center flex-column my-5">
-  <div class="d-flex justify-content-between">
-    <h1 class="mb-3 h4"><strong>Clientes</strong></h1>
+  <div class="d-flex justify-content-between mb-3">
+    <h1 class="h4"><strong>Clientes</strong></h1>
     <a href="<?= base_url() . '/new' ?>" class="btn btn-primary">Nuevo cliente</a>
   </div>
 
-  <table class="table">
-    <thead>
+  <table class="table table-bordered rounded">
+    <thead style="background-color: #1c2331; color: white;">
       <tr>
         <th scope="col">ID</th>
         <th scope="col">Nombre</th>

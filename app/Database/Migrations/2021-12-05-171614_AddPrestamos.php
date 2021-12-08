@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class AddClient extends Migration
+class AddPrestamos extends Migration
 {
     public function up()
     {
@@ -15,39 +15,40 @@ class AddClient extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'first_name'       => [
+            'client_id'       => [
+                'type'       => 'INT',
+                'unsigned' => true,
+            ],
+            'total_value'       => [
+                'type'       => 'INT',
+                'constraint' => '255',
+            ],
+            'quota_value'       => [
+                'type'       => 'INT',
+                'constraint' => '255',
+            ],
+            'loan_type'       => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
-            'last_name'       => [
-                'type'       => 'VARCHAR',
+            'quotas'       => [
+                'type'       => 'INT',
                 'constraint' => '255',
             ],
-            'phone'       => [
+            'status'       => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
-            ],
-            'email'       => [
-                'type'       => 'VARCHAR',
-                'constraint' => '255',
-            ],
-            'password'       => [
-                'type'       => 'VARCHAR',
-                'constraint' => '255',
-            ],
-            'off'       => [
-                'type'       => 'BOOLEAN',
             ],
             'created_at datetime default current_timestamp',
             'updated_at datetime default current_timestamp on update current_timestamp',
-            'deleted_at datetime default current_timestamp',
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('clients');
+        $this->forge->addForeignKey('client_id', 'clients', 'id');
+        $this->forge->createTable('prestamos');
     }
 
     public function down()
     {
-        $this->forge->dropTable('clients');
+        $this->forge->dropTable('prestamos');
     }
 }

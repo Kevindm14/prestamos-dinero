@@ -31,6 +31,8 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+// Clients routes
 $routes->get('/', 'Home::index');
 $routes->get('/new', 'Home::new');
 $routes->post('/create', 'Home::create');
@@ -38,6 +40,21 @@ $routes->get('/edit/(:num)', 'Home::edit/$1');
 $routes->get('/delete/(:num)', 'Home::delete/$1');
 $routes->post('/updateAll', 'Home::updateAll');
 $routes->get('/client/(:num)', 'Home::showClient');
+
+// Prestamos Routes
+$routes->get('/prestamos', 'Prestamos::index');
+$routes->get('/prestamos/new', 'Prestamos::new');
+$routes->post('/prestamos/create', 'Prestamos::create');
+$routes->get('/prestamos/edit/(:num)', 'Prestamos::edit/$1');
+$routes->get('/prestamos/delete/(:num)', 'Prestamos::delete/$1');
+$routes->post('/prestamos/updateAll', 'Prestamos::updateAll');
+$routes->get('/prestamos/(:num)', 'Prestamos::showClient');
+
+// Sign in and Sign Up Routes
+$routes->get('/signup', 'SignupController::index');
+$routes->get('/signin', 'SigninController::index');
+$routes->get('/profile', 'ProfileController::index');
+$routes->get('/logout', 'SigninController::logout');
 
 /*
  * --------------------------------------------------------------------
